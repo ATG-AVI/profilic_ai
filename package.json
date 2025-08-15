@@ -1,0 +1,32 @@
+{
+  "name": "social-agent",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx --watch src/index.ts",
+    "build": "tsc",
+    "example": "tsx example.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.14",
+    "@mastra/core": "^0.13.2",
+    "cheerio": "^1.1.2",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^1.0.0",
+    "@types/node": "^24.2.1",
+    "@types/node-fetch": "^2.6.11",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
+  }
+}
