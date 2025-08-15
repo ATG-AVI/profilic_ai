@@ -1,9 +1,10 @@
 # Social Agent
 
-A TypeScript-based social media analysis agent that takes a social profile URL, scrapes basic information, enriches it via web search, classifies the genre, and returns a list of similar people.
+A full-stack TypeScript application for social profile analysis with a modern Next.js frontend and powerful backend engine.
 
-## Features
+## 🌟 Features
 
+### Backend
 - **Profile Fetching**: Scrapes social profile URLs using Cheerio to extract title, bio, and links
 - **Web Search**: Enriches profile data with web search results (stub implementation ready for API integration)
 - **Genre Classification**: Simple keyword-based classifier mapping to predefined genres (Technology, Business, Creative, etc.)
@@ -11,54 +12,126 @@ A TypeScript-based social media analysis agent that takes a social profile URL, 
 - **Similar People Workflow**: End-to-end pipeline to find similar profiles
 - **AI Agent**: Simple agent that orchestrates the workflow and provides formatted results
 
-## Project Structure
+### Frontend
+- 🎨 **Modern UI**: Beautiful, responsive design with Tailwind CSS
+- 🌙 **Dark Mode**: Automatic dark/light theme support
+- ⚡ **Real-time Analysis**: Live profile analysis with loading states
+- 📊 **Rich Results**: Detailed analysis with similar people, statistics, and genre classification
+- 🔗 **Direct Links**: Easy access to original profiles
+- 📱 **Mobile Friendly**: Responsive design that works on all devices
+
+## 📁 Project Structure
 
 ```
-src/
-├── mastra/
-│   ├── agents/
-│   │   └── social.ts          # Main social agent
-│   ├── workflow/
-│   │   └── similarPeople.ts   # End-to-end workflow with integrated tools
-│   └── kb/
-│       └── people.ts          # Knowledge base implementation
-└── index.ts                   # CLI runner
+social-agent/
+├── src/                    # Backend core
+│   ├── mastra/
+│   │   ├── agents/
+│   │   │   └── social.ts   # Main agent class
+│   │   ├── kb/
+│   │   │   └── people.ts   # Knowledge base
+│   │   └── workflow/
+│   │       └── similarPeople.ts
+│   ├── index.ts            # CLI entry point
+│   └── example.js          # Usage examples
+├── server/                 # Express API server
+│   ├── index.js           # API server
+│   └── package.json       # Server dependencies
+├── frontend/              # Next.js frontend
+│   ├── app/               # Next.js App Router
+│   ├── lib/               # Utilities
+│   └── package.json       # Frontend dependencies
+├── setup.sh               # Automated setup script
+└── README.md              # This file
 ```
 
-## Installation
+## 🚀 Quick Start
 
-1. Install dependencies:
+### Option 1: Automated Setup (Recommended)
+
+Run the setup script to install all dependencies and build the project:
+
 ```bash
-pnpm install
+./setup.sh
 ```
 
-2. Set up your OpenAI API key:
+Then start the services:
+
 ```bash
-export OPENAI_API_KEY="your-api-key-here"
+# Terminal 1: Start backend server
+cd server && npm run dev
+
+# Terminal 2: Start frontend
+cd frontend && npm run dev
 ```
 
-## Usage
+### Option 2: Manual Setup
+
+1. **Install Backend Dependencies**:
+```bash
+npm install
+npm run build
+```
+
+2. **Install Server Dependencies**:
+```bash
+cd server
+npm install
+cd ..
+```
+
+3. **Install Frontend Dependencies**:
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+4. **Start Services**:
+```bash
+# Terminal 1: Backend server
+cd server && npm run dev
+
+# Terminal 2: Frontend
+cd frontend && npm run dev
+```
+
+5. **Open in Browser**:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001
+
+## 🎯 Usage
+
+### Web Interface (Recommended)
+
+1. Open http://localhost:3000 in your browser
+2. Enter a social profile URL (Twitter, LinkedIn, etc.)
+3. Click "Analyze Profile"
+4. View detailed results including:
+   - Profile analysis and genre classification
+   - Similar people with similarity scores
+   - Knowledge base statistics
+   - Processing metrics
 
 ### Command Line Interface
 
-Analyze a social profile and find similar people:
-
 ```bash
-# Basic usage
-npm start https://twitter.com/username
-
-# Specify number of similar people to find
-npm start https://twitter.com/username 10
+npm start <profile-url> [--topK <number>]
 ```
 
-### Programmatic Usage
+Example:
+```bash
+npm start https://twitter.com/elonmusk --topK 5
+```
 
-```typescript
+### Programmatic API
+
+```javascript
 import { SocialAgent } from './src/mastra/agents/social.js';
 
 const agent = new SocialAgent();
-const result = await agent.analyzeProfile('https://twitter.com/username', 5);
-console.log(result);
+const result = await agent.analyzeProfile('https://twitter.com/elonmusk', 5);
+console.log(JSON.stringify(result, null, 2));
 ```
 
 ## Supported Genres
@@ -106,19 +179,26 @@ The genre classifier supports the following categories:
 - Provides formatted results with analysis and statistics
 - Handles errors gracefully and returns structured responses
 
-## Development
+## 🛠️ Development
 
-### Running in Development Mode
+### Backend Scripts
 
-```bash
-npm run dev
-```
+- `npm run dev` - Start development mode with file watching
+- `npm run build` - Build the project
+- `npm start` - Run the CLI tool
+- `npm run example` - Run the example script
 
-### Building
+### Frontend Scripts
 
-```bash
-npm run build
-```
+- `cd frontend && npm run dev` - Start development server
+- `cd frontend && npm run build` - Build for production
+- `cd frontend && npm run start` - Start production server
+- `cd frontend && npm run lint` - Run ESLint
+
+### Server Scripts
+
+- `cd server && npm run dev` - Start development server with auto-reload
+- `cd server && npm start` - Start production server
 
 ## Configuration
 
